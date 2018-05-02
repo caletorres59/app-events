@@ -1,0 +1,54 @@
+<!--
+  Generated template for the ListEventsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>listEvents</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<ion-row>
+  <ion-col>
+    <ion-list>
+      <ion-item>
+          <button ion-button  (click)="formEvent = !formEvent">Create Event</button>
+      </ion-item>
+    </ion-list>
+    
+  </ion-col>
+</ion-row>
+ 
+  <ion-row>
+      <ion-col>
+          <form #form="ngForm" *ngIf="formEvent"  (ngSubmit)="addEvent()" novalidate>
+              <ion-item>
+                <ion-label>Name Event</ion-label>
+                <ion-input type="text" required [(ngModel)]="nameEvent" ngControl="nameEvent"  [ngModelOptions]="{standalone: true}"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Description</ion-label>
+                  <ion-textarea [(ngModel)]="description" ngControl="description" [ngModelOptions]="{standalone: true}"></ion-textarea>
+                </ion-item>
+                <ion-item> <button ion-button type="submit" ><ion-icon name="add-circle"></ion-icon></button></ion-item>        
+            </form>
+      </ion-col>
+    </ion-row>
+    <ion-list>
+      <ion-item *ngFor="let event of events" (click)='showEvent(event)'>
+          <ion-card>
+              <img src="assets/imgs/ev.jpg"/>
+              <div class="card-title">{{event.nameEvent}}</div>
+              <div class="card-subtitle">{{event.description}}</div>
+             
+            </ion-card>
+      </ion-item>
+    </ion-list>
+
+</ion-content>

@@ -1,0 +1,55 @@
+<!--
+  Generated template for the EventPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>event</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<ion-list>
+  <ion-item>
+    <ion-card>
+      <img src="img/nin-live.png"/>
+      <ion-card-content>
+        <ion-card-title>
+        {{event2.nameEvent}}
+          </ion-card-title>
+        <p>
+         {{event2.description}}
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </ion-item>
+  <ion-item>
+    <button ion-button color="light" (click)="showFormGuest = !showFormGuest">add guest</button>
+  </ion-item>
+  <ion-item >
+    <form #form="ngForm" *ngIf="showFormGuest"  (ngSubmit)="addGuest(event2.id)" novalidate>
+      <ion-item>
+        <ion-label>Name Guest</ion-label>
+        <ion-input type="text" required [(ngModel)]="nameGuest" ngControl="nameGuest"  [ngModelOptions]="{standalone: true}"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label>Profile</ion-label>
+          <button ion-button (click)="takePicture()"><ion-icon name="camera"></ion-icon></button>
+        </ion-item>
+        <ion-item> <button ion-button type="submit" ><ion-icon name="add-circle"></ion-icon></button></ion-item>        
+    </form>
+  </ion-item>
+  <ion-item *ngFor="let person of persons">
+    <ion-avatar item-start>
+      <img src="{{person.imgGuest}}">
+    </ion-avatar>
+    <h2>{{person.nameGuest}}</h2>
+  
+  </ion-item>
+</ion-list>
+</ion-content>
